@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Web Rex — Three.js</title>
+  <meta name="title" content="3D Web Rex — Three.js">
+  <meta name="description" content="Based on 'Lonely T-Rex' by Chrome, built with Three.js and Cannon.js.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web-rex.vercel.app">
+  <meta property="og:title" content="3D Web Rex — Three.js">
+  <meta property="og:description" content="Based on 'Lonely T-Rex' by Chrome, built with Three.js and Cannon.js.">
+  <meta property="og:image" content="https://web-rex.vercel.app/web-rex.jpg">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://web-rex.vercel.app">
+  <meta property="twitter:title" content="3D Web Rex — Three.js">
+  <meta property="twitter:description" content="Based on 'Lonely T-Rex' by Chrome, built with Three.js and Cannon.js.">
+  <meta property="twitter:image" content="https://web-rex.vercel.app/web-rex.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    html,body {
+      margin: 0;
+      height: 100vh;
+    }
+    body {
+      background-color: lightgray;
+      font-family: 'Press Start 2P', cursive;
+    }
+    canvas {
+      width: 100vw;
+      height: 100vh;
+      transition: filter 1s ease-in;
+    }
+    body.failed canvas {
+      filter: grayscale(1);
+    }
+    .ui {
+      position: absolute;
+      z-index: 2;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      overflow: hidden;
+    }
+    .level {
+      display: flex;
+    }
+    .score {
+      grid-column-start: 3;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .intro, .over {
+      grid-column-start: 2;
+      grid-row-start: 2;
+      text-align: center;
+      align-self: self-end;
+      transition: opacity .6s ease-in-out, transform .6s ease-in-out;
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    .ui.menu .intro, .ui.game-over .over {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    button {
+      background: none;
+      border: solid 3px black;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-family: 'Press Start 2P', cursive;
+      margin: 24px 0;
+    }
+    button:active {
+      color: white;
+      background-color: black;
+    }
+  </style>
+  
+</head>
+<body>
+  
+  <div id="stats" style="position: absolute;"></div>
+  <canvas id="game"></canvas>
+  <div class="ui">
+    <div class="level">
+      <div>level: </div> <div class="level__value">easy</div>
+    </div>
+    <div class="score">
+      <div>score: </div> <div class="score__value">000000</div>
+    </div>
+    <div class="intro">
+      <div>controls: wasd / arrows</div>
+      <div><button class="start" onclick="window.game.start()">start</button></div>
+    </div>
+    <div class="over">
+      <div>game over</div>
+      <div><button class="retry" onclick="window.game.retry()">retry</button></div>
+    </div>
+  </div>
+  <script src="bundle.js"></script>
+</body>
+</html>
+
